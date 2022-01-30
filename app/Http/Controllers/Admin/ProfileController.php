@@ -13,7 +13,7 @@ class ProfileController extends Controller
     }
     
     public function create(){
-        return redirect('admin/profile/create');
+        return redirect('admin/profile2/create');
     }
     
     public function edit(){
@@ -21,6 +21,6 @@ class ProfileController extends Controller
     }
     
     public function update(){
-        return redirect('admin/profile/edit');
+        return redirect('admin/profile2/edit');
     }
 }
