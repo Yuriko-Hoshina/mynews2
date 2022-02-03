@@ -15,15 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix'=>'admin'],function(){
-    Route::get('news2/create','Admin\NewsController@add')->middleware('auth');   
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+    Route::get('news2/create','Admin\NewsController@add');
+    Route::post('news2/create','Admin\NewsController@create');
 });
 
 /*Route::get('XXX','Admin\AAAController@bbb');  課題用*/ 
 
-Route::group(['prefix'=>'admin'],function(){
-    Route::get('profile2/create','Admin\ProfileController@add')->middleware('auth');
-    Route::get('profile2/edit','Admin\ProfileController@edit')->middleware('auth');
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+    Route::get('profile2/create','Admin\ProfileController@add');
+    Route::post('profile2/create','Admin\ProfileController@create');
+    Route::get('profile2/edit','Admin\ProfileController@edit');
+    Route::post('profile2/edit','Admin\ProfileController@update');
 });
 Auth::routes();
 
