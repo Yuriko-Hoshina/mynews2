@@ -25,13 +25,19 @@
                         <div class="form-group row">
                             <label class="col-md-2">性別</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="gender" value="{{ old('gender') }}">
+                                <select type="text" class="form-control" name="gender">
+                                    <option value="" selected="selected">選択してください</option>
+                                    <option value="1">男性</option>
+                                    <option value="2">女性</option>
+                                    <option value="3">その他</option>
+                                    <option value="4">回答しない</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-2">誕生日</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="birthday" value="{{ old('birthday') }}">
+                                <input type="date" class="form-control" name="birthday" value="<?php echo date('Y-m-d'); ?>">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -43,7 +49,13 @@
                         <div class="form-group row">
                             <label class="col-md-2">自己紹介</label>
                             <div class="col-md-10">
-                                <textarea class="form-control" name="introduction" rows="20">{{ old('introduction') }}</textarea>
+                                <textarea class="form-control" name="introduction" rows="10">{{ old('introduction') }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2">画像</label>
+                            <div class="col-md-10">
+                                <input type="file" class="form-control-file" name="image">
                             </div>
                         </div>
                         {{ csrf_field() }}

@@ -41,7 +41,7 @@ return [
     'distinct' => 'The :attribute field has a duplicate value.',
     'email' => 'The :attribute must be a valid email address.',
     'ends_with' => 'The :attribute must end with one of the following: :values',
-    'exists' => 'The selected :attribute is invalid.',
+    'exists' => ':attribute の選択が必要です。',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
@@ -95,7 +95,7 @@ return [
     'numeric' => 'The :attribute must be a number.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'required' => ':attribute に入力が必要です。',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
@@ -145,6 +145,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'title' => 'タイトル',
+        'body' => '本文',
+        'name' => '名前',
+        'gender' => '性別',
+        'birthday' => '誕生日',
+        'hobby' => '趣味',
+        'introduction' => '自己紹介',
+    ],
 
 ];
