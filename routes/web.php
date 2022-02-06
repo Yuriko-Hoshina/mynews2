@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('news2/create','Admin\NewsController@add');
     Route::post('news2/create','Admin\NewsController@create');
+    Route::get('news2','Admin\NewsController@index');
 });
 
 /*Route::get('XXX','Admin\AAAController@bbb');  課題用*/ 
