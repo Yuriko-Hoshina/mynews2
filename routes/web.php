@@ -19,6 +19,9 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('news2/create','Admin\NewsController@add');
     Route::post('news2/create','Admin\NewsController@create');
     Route::get('news2','Admin\NewsController@index');
+    Route::get('news2/edit','Admin\NewsController@edit');
+    Route::post('news2/edit','Admin\NewsController@update');
+    Route::get('news/delete','Admin\NewsController@delete');
 });
 
 /*Route::get('XXX','Admin\AAAController@bbb');  課題用*/ 
