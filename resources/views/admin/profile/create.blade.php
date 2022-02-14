@@ -17,7 +17,7 @@
                     </ul>
                     @endif
                         <div class="form-group row">
-                            <label class="col-md-2">氏名</label>
+                            <label class="col-md-2">名前</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                             </div>
@@ -26,7 +26,7 @@
                             <label class="col-md-2">性別</label>
                             <div class="col-md-10">
                                 <select type="text" class="form-control" name="gender">
-                                    <option value="" selected="selected">選択してください</option>
+                                    <option value=" " selected="selected">選択してください</option>
                                     <option value="1">男性</option>
                                     <option value="2">女性</option>
                                     <option value="3">その他</option>

@@ -61,9 +61,9 @@ class NewsController extends Controller
         //  News Modelからデータを取得する
         $news = News::find($request->id);
         if(empty($news)){
-            abort(404);
+            abort(404);  //  Not Foundページを表示
         }
-        return view('admin.news.edit',['news_foem'=>$news]);
+        return view('admin.news.edit',['news_form'=>$news]);
     }
     
     public function update(Request $request)
@@ -89,7 +89,7 @@ class NewsController extends Controller
         
         //  該当するデータを上書きして保存する
         $news->fill($news_form)->save();
-        return redirect('admin/news');
+        return redirect('admin/news2');
     }
     
     public function delete(Request $request)
@@ -98,6 +98,6 @@ class NewsController extends Controller
         $news = News::find($request->id);
         //  削除する
         $news->delete();
-        return redirect('admin/news');
+        return redirect('admin/news2');
     }
 }
