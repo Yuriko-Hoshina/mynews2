@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Profile;
+use App\ProHistory;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -82,7 +84,13 @@ class ProfileController extends Controller
         
         $profile->fill($profile_form)->save();
         
-        return redirect('admin/profile2');
+        //  このProfile Modelを保存するタイミングで同時にProHistory Modelにも編集履歴を追加するようにする
+        $history = new ProHistory();
+        $history->profile_id = $profile->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
+        
+        return redirect('admin/profile2/');
     }
     
     public function delete(Request $request)
