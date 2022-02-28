@@ -22,6 +22,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('news2/edit','Admin\NewsController@edit');
     Route::post('news2/edit','Admin\NewsController@update');
     Route::get('news/delete','Admin\NewsController@delete');
+    Route::get('/','NewsController@index');
 });
 
 /*Route::get('XXX','Admin\AAAController@bbb');  課題用*/ 

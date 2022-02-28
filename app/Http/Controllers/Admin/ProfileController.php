@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Profile;
 use App\ProHistory;
+use App\Gender;
 use Carbon\Carbon;
+use Auth;
 
 class ProfileController extends Controller
 {
     //
     public function add(){
-        return view('admin.profile.create');
+        $genders = Gender::all();
+        return view('admin.profile.create', compact(['genders']));
     }
     
     public function create(Request $request)
@@ -37,6 +40,7 @@ class ProfileController extends Controller
         
         //  データベースに保存する
         $profile->fill($form);
+        $profile->user_id = Auth::id();
         $profile->save();
         
         return redirect('admin/profile2/create');
@@ -44,15 +48,20 @@ class ProfileController extends Controller
     
     public function index(Request $request)
     {
-        $cond_title = $request->cond_title;
-        if($cond_title !=''){
+        $q = $request->q;
+        if($q !=''){
         //  検索されたら検索結果を取得する    
-            $posts = Profile::where('name',$cond_title)->get();
+            $posts = Profile::where('name', 'like', '%' . $q . '%')->
+              orWhere('hobby', 'like', '%' . $q. '%')->
+              orWhere('introduction', 'like', '%' . $q. '%')->
+              orWhere('birthday', 'like', '%' . $q. '%')->
+              orWhere('gender', 'like', '%' . $q. '%')->
+              get();
         }else{
         //  それ以外はすべてのニュースを取得する
             $posts = Profile::all();
         }
-        return view('admin.profile.index',['posts'=>$posts,'cond_title'=>$cond_title]);
+        return view('admin.profile.index', compact(['posts', 'q']));
     }
 
     public function edit(Request $request)
@@ -61,7 +70,8 @@ class ProfileController extends Controller
         if(empty($profile)){
             abort(404);
         }
-        return view('admin.profile.edit',['profile_form'=>$profile]);
+        $genders = Gender::all();
+        return view('admin.profile.edit',compact(['profile', 'genders']));
     }
     
     public function update(Request $request)

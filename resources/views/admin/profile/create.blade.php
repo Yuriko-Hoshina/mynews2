@@ -25,12 +25,18 @@
                         <div class="form-group row">
                             <label class="col-md-2">性別</label>
                             <div class="col-md-10">
-                                <select type="text" class="form-control" name="gender">
-                                    <option value=" " selected="selected">選択してください</option>
-                                    <option value="1">男性</option>
-                                    <option value="2">女性</option>
-                                    <option value="3">その他</option>
-                                    <option value="4">回答しない</option>
+                                <select type="text" class="form-control" name="gender_id">
+                                    {{-- <option value=" " selected="selected">選択してください</option> --}}
+                                    {{-- <option value="男性">男性</option>
+                                    <option value="女性">女性</option>
+                                    <option value="その他">その他</option>
+                                    <option value="回答しない">回答しない</option> --}}
+                                    
+                                    <option value="0" @if(old('gender_id') == 0) selected="selected" @endif>選択してください</option>
+                                    @foreach($genders as $gender)
+                                    <option value="{{ $gender->id }}" @if(old('gender_id') == ($gender->id)) selected="selected" @endif>{{ $gender->name }}</option>
+                                    @endforeach
+                                    
                                 </select>
                             </div>
                         </div>

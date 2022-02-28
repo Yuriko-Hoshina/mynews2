@@ -13,9 +13,9 @@
             <div class="col-md-8">
                 <form action="{{ action('Admin\ProfileController@index') }}" method="get">
                     <div class="form-group row">
-                        <label class="col-md-2">名前</label>
+                        <label class="col-md-2">検索ワード：</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
+                            <input type="text" class="form-control" name="q" value="{{ $q }}">
                         </div>
                         <div class="col-md-2">
                             {{ csrf_field() }}
@@ -45,7 +45,7 @@
                             <tr>
                                 <th>{{ $profile->id }}</th>
                                 <td>{{ \Str::limit($profile->name,60) }}</td>
-                                <td>{{ \Str::limit($profile->gender,50) }}</td>
+                                <td>{{ \Str::limit($profile->gender->name,50) }}</td>
                                 <td>{{ \Str::limit($profile->birthday,50) }}</td>
                                 <td>{{ \Str::limit($profile->hobby,500) }}</td>
                                 <td>{{ \Str::limit($profile->introduction,500) }}</td>
