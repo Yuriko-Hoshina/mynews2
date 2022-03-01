@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Profile;
 use App\ProHistory;
 use App\Gender;
+use App\Hobby;
 use Carbon\Carbon;
 use Auth;
 
@@ -15,7 +16,8 @@ class ProfileController extends Controller
     //
     public function add(){
         $genders = Gender::all();
-        return view('admin.profile.create', compact(['genders']));
+        $hobbies = Hobby::all();
+        return view('admin.profile.create', compact(['genders','hobbies']));
     }
     
     public function create(Request $request)
@@ -71,7 +73,8 @@ class ProfileController extends Controller
             abort(404);
         }
         $genders = Gender::all();
-        return view('admin.profile.edit',compact(['profile', 'genders']));
+        $hobbies = Hobby::all();
+        return view('admin.profile.edit', compact(['profile', 'genders','hobbies']));
     }
     
     public function update(Request $request)

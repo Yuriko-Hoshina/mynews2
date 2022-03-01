@@ -13,7 +13,7 @@ class Profile extends Model
         'name' => 'required',
         'gender_id' => 'required',
         'birthday' => 'date',
-        'hobby' => 'required',
+        'hobby_id' => 'required',
         'introduction' => 'required',
     );
     
@@ -26,6 +26,11 @@ class Profile extends Model
     public function gender()
     {
         return $this->belongsTo('App\Gender');
+    }
+    
+    public function hobby()
+    {
+        return $this->belongsTo('App\Hobby');
     }
     
     public function user()

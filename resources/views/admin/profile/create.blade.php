@@ -46,12 +46,20 @@
                                 <input type="date" class="form-control" name="birthday" value="<?php echo date('Y-m-d'); ?>">
                             </div>
                         </div>
+                        
                         <div class="form-group row">
                             <label class="col-md-2">趣味</label>
                             <div class="col-md-10">
-                                <textarea class="form-control" name="hobby" rows="5">{{ old('hobby') }}</textarea>
+                                {{-- <textarea class="form-control" name="hobby" rows="5">{{ old('hobby') }}</textarea> --}}
+                                <select type="text" class="form-control" name="hobby_id">
+                                    <option value="0" @if(old('hobby_id') == 0) selected="selected" @endif>選択してください</option>
+                                    @foreach($hobbies as $hobby)
+                                    <option value="{{ $hobby->id }}" @if(old('hobby_id') == ($hobby->id)) selected="selected" @endif>{{ $hobby->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
+                        
                         <div class="form-group row">
                             <label class="col-md-2">自己紹介</label>
                             <div class="col-md-10">
