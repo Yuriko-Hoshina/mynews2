@@ -22,7 +22,7 @@
         
         {{-- styleに関して。標準で用意されているcssを読み込む --}}
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/profile.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/profilefront.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -79,5 +79,4 @@
             </main>
         </div>
     </body>
-    @yield('js')
 </html>

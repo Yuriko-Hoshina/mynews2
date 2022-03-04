@@ -21,8 +21,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::get('news2','Admin\NewsController@index');
     Route::get('news2/edit','Admin\NewsController@edit');
     Route::post('news2/edit','Admin\NewsController@update');
-    Route::get('news/delete','Admin\NewsController@delete');
-    Route::get('/','NewsController@index');
+    Route::get('news2/delete','Admin\NewsController@delete');
 });
 
 /*Route::get('XXX','Admin\AAAController@bbb');  課題用*/ 
@@ -38,3 +37,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//  各フロント画面のルーティング
+Route::get('/', 'NewsController@index');
+Route::get('/profile2', 'ProfileController@index');

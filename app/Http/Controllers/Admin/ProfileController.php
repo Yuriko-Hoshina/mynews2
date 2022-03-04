@@ -8,6 +8,7 @@ use App\Profile;
 use App\ProHistory;
 use App\Gender;
 use App\Hobby;
+use App\HobbyCategory;
 use Carbon\Carbon;
 use Auth;
 
@@ -15,9 +16,17 @@ class ProfileController extends Controller
 {
     //
     public function add(){
+        /*  プルダウン(普通)verの場合
         $genders = Gender::all();
         $hobbies = Hobby::all();
-        return view('admin.profile.create', compact(['genders','hobbies']));
+        return view('admin.profile.create', compact(['genders','hobbies'])); */
+        
+        //  プルダウン(連動)の場合
+        $hobbyCategories = HobbyCategory::all()->sortBy('id');
+        $genders = Gender::all();
+        $hobbies = Hobby::where('hobby_category_id', $hobbyCategories->first()->id)->orderBy('name', 'asc')->get();
+        $jsAry = self::mkJsMatAry($hobbyCategories);
+        return view('admin.profile.create', compact(['genders', 'hobbies', 'hobbyCategories', 'jsAry']));
     }
     
     public function create(Request $request)
@@ -39,25 +48,37 @@ class ProfileController extends Controller
         unset($form['_token']);
         //  フォームから送信されてきたimageを削除する
         unset($form['image']);
+        unset($profile_form['hobby_category_id']);
         
         //  データベースに保存する
         $profile->fill($form);
         $profile->user_id = Auth::id();
         $profile->save();
         
-        return redirect('admin/profile2/create');
+        //  プロフ一覧画面へと遷移する。画面遷移不要なら'admin/profile2/create'に設定
+        return redirect('admin/profile2/');
     }
     
     public function index(Request $request)
     {
+        //  性別、趣味に関して検索できるように指定
+        /* if ($request->tags) {
+        $ids = RecipeTag::recipeIds($request->tags);
+        $query = $query->whereIn('id', $ids);
+        } */
+        /* if ($request->tags) {
+        $ids = RecipeTag::recipeIds($request->tags);
+        $query = $query->whereIn('id', $ids);
+        } */
+        
         $q = $request->q;
         if($q !=''){
         //  検索されたら検索結果を取得する    
             $posts = Profile::where('name', 'like', '%' . $q . '%')->
-              orWhere('hobby', 'like', '%' . $q. '%')->
-              orWhere('introduction', 'like', '%' . $q. '%')->
+              // orWhere('gender', 'like', '%' . $q. '%')->
               orWhere('birthday', 'like', '%' . $q. '%')->
-              orWhere('gender', 'like', '%' . $q. '%')->
+              // orWhere('hobby', 'like', '%' . $q. '%')->
+              orWhere('introduction', 'like', '%' . $q. '%')->
               get();
         }else{
         //  それ以外はすべてのニュースを取得する
@@ -68,13 +89,27 @@ class ProfileController extends Controller
 
     public function edit(Request $request)
     {
-        $profile = Profile::find($request->id);
+        // プルダウン(普通)verの場合
+        /* $profile = Profile::find($request->id);
         if(empty($profile)){
             abort(404);
         }
         $genders = Gender::all();
         $hobbies = Hobby::all();
-        return view('admin.profile.edit', compact(['profile', 'genders','hobbies']));
+        return view('admin.profile.edit', compact(['profile', 'genders', 'hobbies'])); */
+        
+        //  プルダウン(連動)の場合
+        $profile = Profile::find($request->id);
+        if(empty($profile)){
+            abort(404);
+        }
+        $genders = Gender::all();
+        
+        $hobbyCategories = HobbyCategory::all()->sortBy('id');
+        $hobbies = Hobby::where('hobby_category_id', $hobbyCategories->first()->id)->orderBy('name', 'asc')->get();
+        $jsAry = self::mkJsMatAry($hobbyCategories);
+        
+        return view('admin.profile.edit', compact(['profile', 'genders', 'hobbyCategories', 'hobbies', 'jsAry']));
     }
     
     public function update(Request $request)
@@ -94,6 +129,7 @@ class ProfileController extends Controller
         unset($profile_form['image']);
         unset($profile_form['remove']);
         unset($profile_form['_token']);
+        unset($profile_form['hobby_category_id']);
         
         $profile->fill($profile_form)->save();
         

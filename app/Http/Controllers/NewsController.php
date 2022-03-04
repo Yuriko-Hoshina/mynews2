@@ -20,6 +20,6 @@ class NewsController extends Controller
         
         //  news/index.blade.phpファイルを渡している
         //  またViewテンプレートにheadline,postsという変数を渡している
-        return view('news.index',['headline'=>$headline,'posts'=>$posts]);
+        return view('news.index', compact(['headline','posts']));
     }
 }
