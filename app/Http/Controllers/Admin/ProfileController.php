@@ -95,7 +95,7 @@ class ProfileController extends Controller
         $genders = Gender::all();
         
         $hobbyCategories = HobbyCategory::all()->sortBy('id');
-        $hobbies = Hobby::where('hobby_category_id', $hobbyCategories->first()->id)->orderBy('name', 'asc')->get();
+        $hobbies = Hobby::where('hobby_category_id', $profile->hobby->hobby_category_id)->orderBy('name', 'asc')->get();
         $jsAry = self::mkJsMatAry($hobbyCategories);
         
         

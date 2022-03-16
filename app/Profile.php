@@ -16,8 +16,8 @@ class Profile extends Model
         'name' => 'required',
         'gender_id' => 'required',
         'birthday' => 'date',
-        'hobby_category_id' => 'required',
-        'hobby_id' => 'required',
+        'hobby_category_id' => 'required|numeric|min:1',
+        'hobby_id' => 'required|numeric|min:1',
         'introduction' => 'required',
     );
     

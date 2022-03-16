@@ -63,15 +63,15 @@
                             {{-- プルダウンメニュー連動ver --}}
                             <div class="col-md-7 py-2">
                                 <select class="form-control" name="hobby_category_id" id="category" onChange="swapSelectOptions('category', 'hobby')">
-                                    <option value=" " @if(old('hobby_category_id', $profile->hobby_category_id) == " ") selected="selected" @endif>選択してください</option>
+                                    <option value="0" @if(old('hobby_category_id', $profile->hobby->hobby_category_id) == "0") selected="selected" @endif>選択してください</option>
                                     @foreach($hobbyCategories as $category)
-                                        <option value="{{ $category->id }}" @if(old('hobby_category_id', $profile->hobby_category_id) == $category->id) selected="selected" @endif>{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" @if(old('hobby_category_id', $profile->hobby->hobby_category_id) == $category->id) selected="selected" @endif>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-7 py-2">
                                 <select class="form-control" name="hobby_id" id="hobby">
-                                    <option value=" " @if(old('hobby_id', $profile->hobby_id) == " ") selected="selected" @endif>選択してください</option>
+                                    <option value="0" @if(old('hobby_id', $profile->hobby_id) == "0") selected="selected" @endif>選択してください</option>
                                     @foreach($hobbies as $hobby)
                                         <option value="{{ $hobby->id }}" @if(old('hobby_id', $profile->hobby_id) == $hobby->id) selected="selected" @endif>{{ $hobby->name }}</option>
                                     @endforeach 
