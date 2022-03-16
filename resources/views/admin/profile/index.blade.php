@@ -44,18 +44,18 @@
                             @foreach($posts as $profile)
                             <tr>
                                 <th>{{ $profile->id }}</th>
-                                <td>{{ \Str::limit($profile->name,60) }}</td>
-                                <td>{{ \Str::limit($profile->gender->name,50) }}</td>
-                                <td>{{ \Str::limit($profile->birthday,50) }}</td>
-                                <td>{{ \Str::limit($profile->hobby->name,500) }}</td>
-                                <td>{{ \Str::limit($profile->introduction,500) }}</td>
+                                <td>{{ \Str::limit($profile->name, 60) }}</td>
+                                <td>{{ \Str::limit($profile->gender->name??'', 50) }}</td>
+                                <td>{{ \Str::limit($profile->birthday??'', 50) }}</td>
+                                <td>{{ \Str::limit($profile->hobby->name??'', 500) }}</td>
+                                <td>{{ \Str::limit($profile->introduction, 500) }}</td>
                                 <td>
-                                    <div>
-                                        <a href="{{ action('Admin\ProfileController@edit',['id'=>$profile->id]) }}">編集</a>
-                                    </div>
-                                    <div>
-                                        <a href="{{ action('Admin\ProfileController@delete',['id'=>$profile->id]) }}">削除</a>
-                                    </div>
+                                <div>
+                                    <a href="{{ action('Admin\ProfileController@edit',['id'=>$profile->id]) }}">編集</a>
+                                </div>
+                                <div>
+                                    <a href="{{ action('Admin\ProfileController@delete',['id'=>$profile->id]) }}">削除</a>
+                                </div>
                                 </td>
                             </tr>
                             @endforeach

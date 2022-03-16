@@ -11,7 +11,7 @@ class ProfileController extends Controller
     //
     public function index(Request $request)
     {
-        $posts = Profile::all()->sortByDesc('name');
+        $posts = Profile::all()->sortBy('name');
         
         if(count($posts)>0){
             $head = $posts->shift();

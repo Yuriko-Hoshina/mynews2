@@ -147,7 +147,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'その他',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-            ], */
+            ], 
             [
                 'hobby_category_id' => '2',
                 'name' => 'カラオケ',
@@ -291,7 +291,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'サーフィン',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-            ],
+            ], */
         ]);
     }
 }

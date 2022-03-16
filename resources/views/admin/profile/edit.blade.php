@@ -28,7 +28,7 @@
                             <select type="text" class="form-control" name="gender_id">
                                 
                                 {{-- プルダウンメニュー --}}
-                                <option value="0" @if(old('gender_id', $profile->gender_id) == 0) selected="selected" @endif>選択してください</option>
+                                <option value=" " @if(old('gender_id', $profile->gender_id) == " ") selected="selected" @endif>選択してください</option>
                                 @foreach($genders as $gender)
                                     <option value="{{ $gender->id }}" @if(old('gender_id', $profile->gender_id) == $gender->id) selected="selected" @endif>{{ $gender->name }}</option>
                                 @endforeach
@@ -52,7 +52,7 @@
                             {{-- テキスト入力ver --}}
                             {{-- <textarea class="form-control" name="hobby" rows="5">{{ $profile->hobby }}</textarea> --}}
                             
-                            {{-- プルダウンメニュー --}}
+                            {{-- プルダウンメニューver --}}
                             {{-- <select type="text" class="form-control" name="hobby_id">
                                 <option value="0" @if(old('hobby_id', $profile->hobby_id) == 0) selected="selected" @endif>選択してください</option>
                                 @foreach($hobbies as $hobby)
@@ -60,10 +60,10 @@
                                 @endforeach
                             </select> --}}
                                 
-                            {{-- プルダウンメニュー段階ver --}}
+                            {{-- プルダウンメニュー連動ver --}}
                             <div class="col-md-7 py-2">
                                 <select class="form-control" name="hobby_category_id" id="category" onChange="swapSelectOptions('category', 'hobby')">
-                                    {{-- <option value="0" @if(old('hobby_category_id', $profile->hobby_category_id) == 0) selected="selected" @endif>選択してください</option> --}}
+                                    <option value=" " @if(old('hobby_category_id', $profile->hobby_category_id) == " ") selected="selected" @endif>選択してください</option>
                                     @foreach($hobbyCategories as $category)
                                         <option value="{{ $category->id }}" @if(old('hobby_category_id', $profile->hobby_category_id) == $category->id) selected="selected" @endif>{{ $category->name }}</option>
                                     @endforeach
@@ -71,7 +71,7 @@
                             </div>
                             <div class="col-md-7 py-2">
                                 <select class="form-control" name="hobby_id" id="hobby">
-                                    <option value="0" @if(old('hobby_id', $profile->hobby_id) == 0) selected="selected" @endif>選択してください</option>
+                                    <option value=" " @if(old('hobby_id', $profile->hobby_id) == " ") selected="selected" @endif>選択してください</option>
                                     @foreach($hobbies as $hobby)
                                         <option value="{{ $hobby->id }}" @if(old('hobby_id', $profile->hobby_id) == $hobby->id) selected="selected" @endif>{{ $hobby->name }}</option>
                                     @endforeach 
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                
                     
                     <div class="form-group row">
                         <label class="col-md-2" for="introduction">自己紹介</label>
@@ -107,7 +107,12 @@
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-primary" value="更新">
                         </div>
+                        
+                        <div class="col-ml-md-5">
+                            <a href={{ url('/admin/profile2') }}>一覧へ戻る</a>
+                        </div>
                     </div>
+                    
                 </form>
                 <div class="row mt-5">
                     <div class="col-md-4 mx-auto">

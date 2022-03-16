@@ -17,6 +17,6 @@ class News extends Model
     //  News Modelに関連付けを行う
     public function histories()
     {
-        return $this->hasMany('App\History')->limit(3);
+        return $this->hasMany('App\History')->latest('id')->limit(5);
     }
 }

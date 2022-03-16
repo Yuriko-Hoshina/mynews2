@@ -8,6 +8,11 @@ class Hobby extends Model
 {
     //
     protected $guarded = array('id');
+
+    public static $rules = array(
+        'name' => 'required',
+        'hobby_category_id' => 'required',
+    );
     
     public function profiles()
     {

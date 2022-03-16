@@ -16,88 +16,96 @@
                         @endforeach
                     </ul>
                     @endif
-                        <div class="form-group row">
-                            <label class="col-md-2">名前</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
-                            </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">名前</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-2">性別</label>
-                            <div class="col-md-10">
-                                <select type="text" class="form-control" name="gender_id">
-                                    {{-- <option value=" " selected="selected">選択してください</option> --}}
-                                    {{-- <option value="男性">男性</option>
-                                    <option value="女性">女性</option>
-                                    <option value="その他">その他</option>
-                                    <option value="回答しない">回答しない</option> --}}
-                                    
-                                    {{-- プルダウンメニュー --}}
-                                    <option value="0" @if(old('gender_id') == 0) selected="selected" @endif>選択してください</option>
-                                    @foreach($genders as $gender)
-                                        <option value="{{ $gender->id }}" @if(old('gender_id') == ($gender->id)) selected="selected" @endif>{{ $gender->name }}</option>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">性別</label>
+                        <div class="col-md-10">
+                            <select type="text" class="form-control" name="gender_id">
+                                {{-- <option value=" " selected="selected">選択してください</option> --}}
+                                {{-- <option value="男性">男性</option>
+                                <option value="女性">女性</option>
+                                <option value="その他">その他</option>
+                                <option value="回答しない">回答しない</option> --}}
+                                
+                                {{-- プルダウンメニュー --}}
+                                <option value=" " @if(old('gender_id') == " ") selected="selected" @endif>選択してください</option>
+                                @foreach($genders as $gender)
+                                    <option value="{{ $gender->id }}" @if(old('gender_id') == ($gender->id)) selected="selected" @endif>{{ $gender->name }}</option>
+                                @endforeach
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">誕生日</label>
+                        <div class="col-md-10">
+                            <input type="date" class="form-control" name="birthday" value="<?php echo date('Y-m-d'); ?>">
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="form-group row">
+                        <label class="col-md-2">趣味</label>
+                        <div class="col-md-10">
+                            {{-- テキスト入力ver --}}
+                            {{-- <textarea class="form-control" name="hobby" rows="5">{{ old('hobby') }}</textarea> --}}
+                            
+                            {{-- プルダウンメニューver --}}
+                            {{-- <select class="form-control" name="hobby_id">
+                                <option value="0" @if(old('hobby_id') == 0) selected="selected" @endif>選択してください</option>
+                                @foreach($hobbies as $hobby)
+                                    <option value="{{ $hobby->id }}" @if(old('hobby_id') == ($hobby->id)) selected="selected" @endif>{{ $hobby->name }}</option>
+                                @endforeach
+                            </select> --}}
+                            
+                            {{-- プルダウンメニュー連動ver --}}
+                            <div class="col-md-7 py-2">
+                                <select class="form-control" name="hobby_category_id" id="category" onChange="swapSelectOptions('category', 'hobby')">
+                                    <option value=" " @if(old('hobby_category_id') == " ") selected="selected" @endif>選択してください</option>
+                                    @foreach($hobbyCategories as $category)
+                                        <option value="{{ $category->id }}" @if(old('hobby_category_id') == ($category->id)) selected="selected" @endif>{{ $category->name }}</option>
                                     @endforeach
-                                    
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2">誕生日</label>
-                            <div class="col-md-10">
-                                <input type="date" class="form-control" name="birthday" value="<?php echo date('Y-m-d'); ?>">
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="form-group row">
-                            <label class="col-md-2">趣味</label>
-                            <div class="col-md-10">
-                                {{-- テキスト入力ver --}}
-                                {{-- <textarea class="form-control" name="hobby" rows="5">{{ old('hobby') }}</textarea> --}}
-                                {{-- プルダウンメニュー(普通) --}}
-                                {{-- <select class="form-control" name="hobby_id">
-                                    <option value="0" @if(old('hobby_id') == 0) selected="selected" @endif>選択してください</option>
+                            <div class="col-md-7 py-2">
+                                <select class="form-control" name="hobby_id" id="hobby">
+                                    <option value=" " @if(old('hobby_id') == " ") selected="selected" @endif>選択してください</option>
                                     @foreach($hobbies as $hobby)
                                         <option value="{{ $hobby->id }}" @if(old('hobby_id') == ($hobby->id)) selected="selected" @endif>{{ $hobby->name }}</option>
                                     @endforeach
-                                </select> --}}
-                                
-                                {{-- プルダウンメニュー段階ver --}}
-                                <div class="col-md-7 py-2">
-                                    <select class="form-control" name="hobby_category_id" id="category" onChange="swapSelectOptions('category', 'hobby')">
-                                        <option value="0" @if(old('hobby_category_id') == 0) selected="selected" @endif>選択してください</option>
-                                        @foreach($hobbyCategories as $category)
-                                            <option value="{{ $category->id }}" @if(old('hobby_category_id') == ($category->id)) selected="selected" @endif>{{ $category->name }}</option>
-                                        @endforeach
                                 </select>
-                                </div>
-                                <div class="col-md-7 py-2">
-                                    <select class="form-control" name="hobby_id" id="hobby">
-                                        <option value="0" @if(old('hobby_id') == 0) selected="selected" @endif>選択してください</option>
-                                        @foreach($hobbies as $hobby)
-                                            <option value="{{ $hobby->id }}" @if(old('hobby_id') == ($hobby->id)) selected="selected" @endif>{{ $hobby->name }}</option>
-                                        @endforeach
-                                </select>
-                                </div>
                             </div>
                         </div>
-                        
-                        
-                        <div class="form-group row">
-                            <label class="col-md-2">自己紹介</label>
-                            <div class="col-md-10">
-                                <textarea class="form-control" name="introduction" rows="10">{{ old('introduction') }}</textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-2">画像</label>
-                            <div class="col-md-10">
-                                <input type="file" class="form-control-file" name="image">
-                            </div>
-                        </div>
-                        {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="作成">
+                    </div>
                     
+                    
+                    <div class="form-group row">
+                        <label class="col-md-2">自己紹介</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" name="introduction" rows="10">{{ old('introduction') }}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2">画像</label>
+                        <div class="col-md-10">
+                            <input type="file" class="form-control-file" name="image">
+                        </div>
+                    </div>
+                    {{ csrf_field() }}
+
+                    <div class="form-group row">
+                        <div class="col-md-10">
+                            <input type="submit" class="btn btn-primary" value="作成">
+                        </div>
+                        <div class="col-ml-md-5">
+                            <a href={{ url('/admin/profile2') }}>一覧へ戻る</a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
