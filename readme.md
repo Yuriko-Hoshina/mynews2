@@ -70,3 +70,27 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+### 【内容】tech boostカリキュラム復習用マイニュース。
+
+### 【概要】ニュース画面は基本的にカリキュラム通り。マイページ画面をいくつかカスタマイズした。
+
+### 【カスタマイズ内容】
+
+・画面内配色変更
+
+・一覧表示内容追加(誕生日欄、画像欄)
+
+・一覧検索内容変更(あいまい検索)
+
+・新規作成画面タイプ変更(誕生日、性別、趣味)
+
+・「更新」/「作成」ボタンで一覧画面へ戻るよう設定
+
+・一覧、新規作成画面に「一覧へ戻る」リンク実装
+
+・編集履歴表示数変更
+
+・編集履歴を最新のものにソート
