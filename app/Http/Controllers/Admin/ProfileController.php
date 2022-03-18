@@ -12,6 +12,7 @@ use App\HobbyCategory;
 use App\User;
 use Carbon\Carbon;
 use Auth;
+use Storage;
 
 class ProfileController extends Controller
 {
@@ -41,8 +42,13 @@ class ProfileController extends Controller
         
         //  フォームから画像が送信されてきたら、保存して$profile->image_pathに画像のパスを保存する
         if(isset($form['image'])){
-            $path = $request->file('image')->store('public/image');
-            $profile->image_path = basename($path);
+            //  デプロイ前のコード
+            /* $path = $request->file('image')->store('public/image');
+            $profile->image_path = basename($path); */
+            //  デプロイ後のコード
+            $path = Storage::disk('s3')->putFile('/profile2', $form['image'], 'public');
+            $profile->image_path = Storage::disk('s3')->url($path);
+            
         }else{
             $profile->image_path = null;
         }
@@ -50,6 +56,7 @@ class ProfileController extends Controller
         unset($form['_token']);
         //  フォームから送信されてきたimageを削除する
         unset($form['image']);
+        //  フォームから送信されてきたhobby_category_idを削除する
         unset($form['hobby_category_id']);
         
         //  データベースに保存する
@@ -60,7 +67,7 @@ class ProfileController extends Controller
         //  プロフ一覧画面へと遷移する。画面遷移不要なら'admin/profile2/create'に設定
         return redirect('admin/profile2/');
     }
-    
+
     public function index(Request $request)
     {
         $q = $request->q;
@@ -113,8 +120,13 @@ class ProfileController extends Controller
         if($request->remove == 'true'){
             $profile_form['image_path'] = null;
         }elseif($request->file('image')){
-            $path = $request->file('image')->store('public/image');
-            $profile_form['image_path'] = basename($path);
+            //  デプロイ前のコード
+            /* $path = $request->file('image')->store('public/image');
+            $profile_form['image_path'] = basename($path); */
+            //  デプロイ後のコード
+            $path = Storage::disk('s3')->putFile('/profile2', $profile_form['image'], 'public');
+            $profile->image_path = Storage::disk('s3')->url($path);
+            
         }else{
             $profile_form['image_path'] = $profile->image_path;
         }
