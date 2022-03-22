@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ],
-        ]); */
+        ]); 
         
         
         //  趣味の大分類選択肢を以下に記載
@@ -292,6 +292,6 @@ class DatabaseSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ], 
-        ]);
+        ]); */
     }
 }
