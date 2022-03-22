@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ],
-        ]);
+        ]); */
         
         
         //  趣味の大分類選択肢を以下に記載
@@ -60,11 +60,11 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => new DateTime(),
             ],
         ]);
-        */
+        
         
         //  細かい趣味の分類を以下に記載
         \DB::table('hobbies')->insert([
-            /*[
+            [
                 'hobby_category_id' => '1',
                 'name' => 'カフェ巡り',
                 'created_at' => new DateTime(),
@@ -291,7 +291,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'サーフィン',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
-            ], */
+            ], 
         ]);
     }
 }
