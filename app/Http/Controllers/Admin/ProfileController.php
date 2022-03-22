@@ -26,7 +26,7 @@ class ProfileController extends Controller
         //  プルダウン(連動)verの場合
         $hobbyCategories = HobbyCategory::all()->sortBy('id');
         $genders = Gender::all();
-        $hobbies = Hobby::where('hobby_category_id', $hobbyCategories->first()->id)->orderBy('name', 'asc')->get();
+        $hobbies = Hobby::where('hobby_category_id', $profile->hobby->hobby_category_id)->orderBy('name', 'asc')->get();
         $jsAry = self::mkJsMatAry($hobbyCategories);
         
         return view('admin.profile.create', compact(['genders', 'hobbies', 'hobbyCategories', 'jsAry']));
