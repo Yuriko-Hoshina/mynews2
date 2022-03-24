@@ -97,13 +97,14 @@
                             <input type="file" class="form-control-file" name="image">
                         </div>
                     </div>
+                    
                     {{ csrf_field() }}
-
                     <div class="form-group row">
                         <div class="col-md-10">
                             <input type="submit" class="btn btn-primary" value="作成">
                         </div>
                         <div class="col-ml-md-5">
+                            {{ csrf_field() }}
                             <a href={{ url('/admin/profile2') }}>一覧へ戻る</a>
                         </div>
                     </div>

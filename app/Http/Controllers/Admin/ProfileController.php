@@ -46,7 +46,7 @@ class ProfileController extends Controller
             /* $path = $request->file('image')->store('public/image');
             $profile->image_path = basename($path); */
             //  デプロイ後のコード
-            $path = Storage::disk('s3')->putFile('/profile2', $form['image'], 'public');
+            $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');
             $profile->image_path = Storage::disk('s3')->url($path);
             
         }else{
@@ -124,7 +124,7 @@ class ProfileController extends Controller
             /* $path = $request->file('image')->store('public/image');
             $profile_form['image_path'] = basename($path); */
             //  デプロイ後のコード
-            $path = Storage::disk('s3')->putFile('/profile2', $profile_form['image'], 'public');
+            $path = Storage::disk('s3')->putFile('/', $profile_form['image'], 'public');
             $profile->image_path = Storage::disk('s3')->url($path);
             
         }else{

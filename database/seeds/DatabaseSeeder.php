@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        /*
+        
         \DB::table('genders')->insert([
             [
                 'name' => '男性',
@@ -292,6 +292,6 @@ class DatabaseSeeder extends Seeder
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ], 
-        ]); */
+        ]); 
     }
 }

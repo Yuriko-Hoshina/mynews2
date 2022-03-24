@@ -109,6 +109,7 @@
                         </div>
                         
                         <div class="col-ml-md-5">
+                            {{ csrf_field() }}
                             <a href={{ url('/admin/profile2') }}>一覧へ戻る</a>
                         </div>
                     </div>
